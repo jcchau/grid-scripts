@@ -16,7 +16,7 @@
 
 # Job submission directives for qsub
 #$ -cwd
-#$ -m ae
+#$ -m a
 
 if [ -n "$NSLOTS" ]; then
 
