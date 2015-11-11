@@ -3,7 +3,7 @@ To compile MATLAB functions for MATLAB 2014b:
 	(Use option -nodisplay on text terminals to skip trying to start a
 	GUI.)
 2. In MATLAB, for function myFunc:
-	mcc -mv -R -nodisplay myFunc
+	mcc -mv -R -nodisplay myFunc.m
 
 	Again, "-R -nodisplay" tells the compiled program to skip starting
 	a GUI.
