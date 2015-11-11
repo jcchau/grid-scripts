@@ -42,7 +42,7 @@ if [ -n "$NSLOTS" ]; then
 		# the specified MATLAB command(s) before exiting.  
 		# Note: JVM is needed for the Parallel Computing Toolbox.
 		$MATLABCMD -nodisplay -nosplash -r \
-			"cluster_gs = parcluster('local'); cluster_gs.NumWorkers=$NSLOTS; parpool(cluster_gs, cluster_gs.NumWorkers); $1, exit"
+			"parpool('local', $NSLOTS); $1, exit"
 
 	else
 		echo "Error: NSLOTS is invalid. Please only run using qsub." \
