@@ -15,9 +15,6 @@
 # Note: execute from the directory in which the MATLAB script should run.
 # <matlabcmd> should be the MATLAB command to run after matlabpool.
 # If <matlabcmd> is the name of a script, the .m extension should be omitted.
-#
-# Warning: grid-single-node-matlab.sh creates and uses a MATLAB variable
-# named 'cluster_gs'.  <matlabcmd> should avoid using this variable. 
 
 # The command used to start (a specific version or installation of) MATLAB.
 # >=matlab-2014a is required for the parpool command used in this script.
