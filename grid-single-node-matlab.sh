@@ -1,7 +1,7 @@
 #!/bin/bash
 # grid-single-node-matlab.sh: Generic script for use with qsub to start a
 # parallel MATLAB job on a single node.
-# Written by Jimmy C. Chau <jchau@bu.edu> 2014 Oct 15-Nov 05
+# Written by Jimmy C. Chau <jchau@bu.edu>
 
 # Usage (for BU SCC):
 #	qsub -N <jobname> [-pe <parallel_env> <n>] \
@@ -31,7 +31,8 @@ if [ -n "$NSLOTS" ]; then
 
 		# Starts MATLAB for a single worker.
 		# Skip running matlabpool (not necessary).
-		$MATLABCMD -nodisplay -nosplash -r "$1, exit"
+		$MATLABCMD -nodisplay -nosplash -singleCompThread \
+			-r "$1, exit"
 
 	elif [[ "$NSLOTS" -gt "1" ]]; then
 
