@@ -44,7 +44,7 @@ if [ -n "$NSLOTS" ]; then
 		# the specified MATLAB command(s) before exiting.  
 		# Note: JVM is needed for the Parallel Computing Toolbox.
 		matlab -nodisplay -nosplash -r \
-			"parpool('local', $NSLOTS); $1, exit"
+			"maxNumCompThreads($NSLOTS); parpool('local', $NSLOTS); $1, exit"
 
 	else
 		echo "Error: NSLOTS is invalid. Please only run using qsub." \
