@@ -15,10 +15,14 @@
 # Note: execute from the directory in which the MATLAB script should run.
 # <matlabcmd> should be the MATLAB command to run after matlabpool.
 # If <matlabcmd> is the name of a script, the .m extension should be omitted.
-
-# The command used to start (a specific version or installation of) MATLAB.
-# >=matlab-2014a is required for the parpool command used in this script.
-MATLABCMD="/usr/local/apps/matlab-2014b/bin/matlab"
+#
+# To select a version of MATLAB, use (for example):
+#	module load matlab/2015b
+# (Currently, the compute node seems to inherit the  MATLAB version anyway,
+# but you can use the -V flag for qsub to forward all environment variables.) 
+#
+# To see what versions of MATLAB are available, run:
+#	module avail matlab
 
 # Job submission directives for qsub
 #$ -cwd
@@ -31,7 +35,7 @@ if [ -n "$NSLOTS" ]; then
 
 		# Starts MATLAB for a single worker.
 		# Skip running matlabpool (not necessary).
-		$MATLABCMD -nodisplay -nosplash -singleCompThread \
+		matlab -nodisplay -nosplash -singleCompThread \
 			-r "$1, exit"
 
 	elif [[ "$NSLOTS" -gt "1" ]]; then
@@ -39,7 +43,7 @@ if [ -n "$NSLOTS" ]; then
 		# Starts MATLAB, fires up the parallel workers, and executes
 		# the specified MATLAB command(s) before exiting.  
 		# Note: JVM is needed for the Parallel Computing Toolbox.
-		$MATLABCMD -nodisplay -nosplash -r \
+		matlab -nodisplay -nosplash -r \
 			"parpool('local', $NSLOTS); $1, exit"
 
 	else
