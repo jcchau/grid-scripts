@@ -30,3 +30,29 @@ To run on the cluster:
 	-m a	# email on abort
 
 	Can omit "-pe omp <n>" if myFunc is single-worker.
+
+--------------------------------------------------------------------
+From Keith Ma (Research Computing Services):
+2015-11-10 19:58:11 - Ma, Keith Frederick (Client Communication)
+Hi Jimmy,
+ 
+The path is: /usr/local/apps/matlab-2014b
+ 
+However, there are a few new (and not yet documented) shortcuts using the module system that you may prefer.
+ 
+First, all the installed versions of MATLAB can be loaded using the module system (run 'module avail matlab' to see what is available). Loading the module will activate the desired version of MATLAB, and also define an environment variable you (SCC_MATLAB_DIR) can use when running your standalone. To do it this way, you would run:
+ 
+module load matlab/2014b
+run_standalone.sh $SCC_MATLAB_DIR
+ 
+Second, you can omit the helper script entirely by loading the MCR libraries via the module system. The module takes care of all of the environment setup. Once itis loaded, you can just run the standalone directly. For 2014b, the correct MCR is version 8.4, so you would run:
+ 
+module load mcr/8.4
+standalone
+ 
+If you are running in batch, be sure to forward your environment to the compute node using the -V flag.
+ 
+Best,
+Keith Ma
+Research Computing Services
+
